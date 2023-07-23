@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace:  argocd
+
+
+spec:
+  project: default
+
+  source: 
+    repoURL: https://github.com/MamoonBashir/argoproj2.git
+    targetRevision: HEAD
+    path: argoproj2 # Name of the folder in Git having all files.
+  destination:
+    server: https://kubernetes.default.svc # Server in which ArgoCd is deployed.
+    namespace: myapp
+
+  syncPolicy:
+
+    automated: # The attribute through which Any cahnges in Git will be automatically fetched by ArgoCD. On running $kubectl apply, argocd will override and sync it with git repo.
+      selfHeal: true  #An option of the attribute used To undo or modify any manual changes in the cluster. As bydefault changes made to the live cluster will not trigger automated sync.
+      prune: true # By default automated sync dont delete any resurce, in order to allow argocd to delete, prune option is to be used
+      # By default ArgoCD pulls changes every 3 minutes. 
