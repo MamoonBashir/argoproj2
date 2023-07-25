@@ -11,7 +11,7 @@ spec:
   source: 
     repoURL: https://github.com/MamoonBashir/argoproj2.git
     targetRevision: HEAD
-    path: argoproj2 # Name of the folder in Git having all files.
+    path: argo3 # Name of the folder in Git having all files.
   destination:
     server: https://kubernetes.default.svc # Server in which ArgoCd is deployed.
     namespace: myapp
